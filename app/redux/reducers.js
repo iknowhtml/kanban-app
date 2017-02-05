@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, IS_EDITING_NOTE} from './actions';
+import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, ACTIVATE_EDITING} from './actions';
 import {combineReducers} from 'redux';
 
 var initial =[
@@ -22,23 +22,23 @@ function notesReducer(state = initial, action){
         ...state,
       {
         id: uuid.v4(),
-        text: action.text,
+        task: action.text,
         isEditing: false
       }];
 
     case UPDATE_NOTE:
       return state.map(note =>
         note.id === action.id ?
-        Object.assign({}, note, {text: action.text})
+        Object.assign({}, note, {task: action.text, isEditing:false})
         : note);
 
     case DELETE_NOTE:
       return state.filter(note => note.id !== action.id);
 
-    case IS_EDITING_NOTE:
+    case ACTIVATE_EDITING:
       return state.map(note =>
         note.id === action.id ?
-        Object.assign({}, note, {isEditing: action.isEditing})
+        Object.assign({}, note, {isEditing: true})
         : note)
 
     default:

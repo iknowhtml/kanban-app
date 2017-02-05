@@ -54,15 +54,15 @@ class App extends React.Component{
   //   });
   // }
 
+
   render(){
     const {dispatch, notes} = this.props;
-    console.log(notes);
     return(
       <div>
         <button className="add-note" onClick={() => dispatch(actionCreator.addNote())}>+</button>
         <Notes notes={notes}
-          onNoteClick={(id, task) => dispatch(actionCreator.updateNote(id, task))}
-          onEdit={id => dispatch(actionCreator.editNote(id))}
+          onNoteClick={(id) => dispatch(actionCreator.activateEditing(id))}
+          onEdit={(id, task) => dispatch(actionCreator.updateNote(id, task))}
           onDelete={id => dispatch(actionCreator.deleteNote(id))}/>
     </div>
     );

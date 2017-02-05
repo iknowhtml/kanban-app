@@ -22,11 +22,10 @@ function deleteNote(id){
   }
 }
 
-function editNote(id, isEditing) {
+function activateEditing(id) {
   return {
-    type: types.IS_EDITING_NOTE,
-    id,
-    isEditing
+    type: types.ACTIVATE_EDITING,
+    id
   }
 }
 
@@ -35,5 +34,5 @@ export default {
   addNote,
   updateNote,
   deleteNote,
-  editNote
+  activateEditing
 }

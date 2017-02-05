@@ -10,7 +10,13 @@ if(process.env.NODE_ENV !== 'production') {
   React.Perf = require('react-addons-perf');
 }
 
-const store = createStore(reducer);
+var initialState = JSON.parse(localStorage.getItem('state')) || {};
+
+const store = createStore(reducer, initialState);
+
+store.subscribe(() => {
+localStorage.setItem('state', JSON.stringify(store.getState()));
+});
 
 ReactDOM.render(
   <Provider store={store}>
