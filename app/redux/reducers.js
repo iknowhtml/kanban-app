@@ -5,11 +5,13 @@ import {combineReducers} from 'redux';
 var initial =[
   {
 		id: uuid.v4(),
-		task: 'Learn React'
+		task: 'Learn React',
+    isEditing: false
 	},
   {
 		id: uuid.v4(),
-		task: 'Do laundry'
+		task: 'Do laundry',
+    isEditing: false
 	}
 ];
 

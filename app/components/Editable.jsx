@@ -31,7 +31,7 @@ finishEdit = e => {
 }
   render() {
     const {className, value, onEdit, ...props} = this.props;
-
+    console.log(this.props);
     return (
       <input type="text"
         className={classnames('edit', className)}
