@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.add-note{
+.add-note, .add-lane{
   background-color: #fdfdfd;
   border: 1px solid #ccc;
 }

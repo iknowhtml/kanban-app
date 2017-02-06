@@ -14,21 +14,6 @@ const Editable = ({editing, value, onEdit, className, ...props}) => {
     </span>
 }
 
-
-// class Editable extends React.Component{
-//   render(){
-//     const {editing, value, onEdit, className, ...props} = this.props;
-//     console.log(value);
-//     return(
-//       <span
-//         className={classnames('value', className)}
-//         {...props}>
-//         {value}
-//       </span>
-//     );
-//   }
-// }
-
 class Edit extends React.Component{
 
 checkEnter = e => {
@@ -39,7 +24,6 @@ checkEnter = e => {
 
 finishEdit = e => {
   const value = e.target.value;
-
   if(this.props.onEdit) {
     this.props.onEdit(value);
   }

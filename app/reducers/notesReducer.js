@@ -1,21 +1,7 @@
 import uuid from 'uuid';
-import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, ACTIVATE_EDITING} from './actions';
-import {combineReducers} from 'redux';
+import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, ACTIVATE_EDITING} from '../actions/noteActions';
 
-var initial =[
-  {
-		id: uuid.v4(),
-		task: 'Learn React',
-    isEditing: false
-	},
-  {
-		id: uuid.v4(),
-		task: 'Do laundry',
-    isEditing: false
-	}
-];
-
-function notesReducer(state = initial, action){
+function notesReducer(state = [], action){
   switch(action.type){
     case ADD_NOTE:
       return [
@@ -23,7 +9,8 @@ function notesReducer(state = initial, action){
       {
         id: uuid.v4(),
         task: action.text,
-        isEditing: false
+        isEditing: false,
+        laneId: action.laneId
       }];
 
     case UPDATE_NOTE:
@@ -46,8 +33,4 @@ function notesReducer(state = initial, action){
   }
 }
 
-const reducer = combineReducers({
-  notesReducer
-});
-
-export default reducer;
+export default notesReducer;

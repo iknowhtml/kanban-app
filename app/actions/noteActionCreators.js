@@ -1,9 +1,10 @@
-import * as types from './actions';
+import * as types from './noteActions';
 
-function addNote(text = 'New Item'){
+function addNote(laneId, text = 'New Item'){
   return{
     type: types.ADD_NOTE,
-    text
+    text,
+    laneId
   }
 }
 
@@ -35,4 +36,4 @@ export default {
   updateNote,
   deleteNote,
   activateEditing
-}
+};
