@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "49725d18a9d3fdf2b523"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c8e0c970d3708ee565b2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -633,7 +633,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  background-color: cornsilk;\n\n  font-family: sans-serif;\n}\n\n.add-note, .add-lane{\n  background-color: #fdfdfd;\n  border: 1px solid #ccc;\n}\n\n.notes{\n  margin: 0.5em;\n  padding-left: 0;\n\n  max-width: 10em;\n  list-style: none;\n}\n\n.note{\n  overflow: auto;\n\n  margin-bottom: 0.5em;\n  padding: 0.5em;\n\n  background-color: #fdfdfd;\n  box-shadow: 0 0 0.3em 0.03em rgba(0,0,0,.3);\n}\n\n.note:hover {\n  box-shadow: 0 0 0.3em .03em rgba(0,0,0,.7);\n\n  transition: .6s;\n}\n\n.note .value {\n  /* force to use inline-block so that it gets minimum height */\n  display: inline-block;\n}\n\n.note .editable {\n  float: left;\n}\n.note .delete {\n  float: right;\n\n  padding: 0;\n\n  background-color: #fdfdfd;\n  border: none;\n\n  cursor: pointer;\n\n  visibility: hidden;\n}\n.note:hover .delete {\n  visibility: visible;\n}\n", ""]);
+	exports.push([module.id, "body {\n  background-color: cornsilk;\n\n  font-family: sans-serif;\n}\n\n/*lane styling*/\n.lane {\n  display: inline-block;\n\n  margin: 1em;\n\n  background-color: #efefef;\n  border: 1px solid #ccc;\n  border-radius: 0.5em;\n\n  min-width: 10em;\n  vertical-align: top;\n}\n\n/*lane header styling*/\n.lane-header {\n  overflow: auto;\n\n  padding: 1em;\n\n  color: #efefef;\n  background-color: #333;\n\n  border-top-left-radius: 0.5em;\n  border-top-right-radius: 0.5em;\n}\n\n.note-add{\n  float: left;\n  margin-right: 0.5em;\n}\n\n.lane-name{\n  float: left;\n}\n\n.lane-delete {\n  float: right;\n  margin-left: 0.5em;\n  visibility: hidden;\n  padding: 0;\n  cursor: pointer;\n  color: white;\n  background-color: rgba(0, 0, 0, 0);\n  border: 0;\n}\n\n.lane-header:hover .lane-delete {\n  visibility: visible;\n}\n\n.add-lane, .note-add{\n  cursor: pointer;\n  background-color: #fdfdfd;\n  border: 1px solid #ccc;\n}\n\n.notes{\n  margin: 0.5em;\n  padding-left: 0;\n\n  max-width: 10em;\n  list-style: none;\n}\n\n.note{\n  overflow: auto;\n\n  margin-bottom: 0.5em;\n  padding: 0.5em;\n\n  background-color: #fdfdfd;\n  box-shadow: 0 0 0.3em 0.03em rgba(0,0,0,.3);\n}\n\n.note:hover {\n  box-shadow: 0 0 0.3em .03em rgba(0,0,0,.7);\n\n  transition: .6s;\n}\n\n.note .value {\n  /* force to use inline-block so that it gets minimum height */\n  display: inline-block;\n}\n\n.note .editable {\n  float: left;\n}\n\n.note .delete {\n  float: right;\n\n  padding: 0;\n\n  background-color: #fdfdfd;\n  border: none;\n\n  cursor: pointer;\n\n  visibility: hidden;\n}\n.note:hover .delete{\n  visibility: visible;\n}\n", ""]);
 	
 	// exports
 
