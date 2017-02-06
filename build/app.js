@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "49725d18a9d3fdf2b523"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c8e0c970d3708ee565b2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -25557,8 +25557,32 @@
 	  };
 	}
 	
+	function updateLane(id, text) {
+	  return {
+	    type: _laneActions.UPDATE_LANE,
+	    id: id,
+	    text: text
+	  };
+	}
+	
+	function deleteLane(id) {
+	  return {
+	    type: _laneActions.DELETE_LANE,
+	    id: id
+	  };
+	}
+	
+	function activateLaneEdit(id) {
+	  return {
+	    type: _laneActions.ACTIVATE_LANE_EDIT,
+	    id: id
+	  };
+	}
 	exports.default = {
-	  addLane: addLane
+	  addLane: addLane,
+	  updateLane: updateLane,
+	  deleteLane: deleteLane,
+	  activateLaneEdit: activateLaneEdit
 	};
 
 /***/ },
@@ -25574,7 +25598,13 @@
 	  value: true
 	});
 	var ADD_LANE = 'ADD_LANE';
+	var UPDATE_LANE = 'UPDATE_LANE';
+	var DELETE_LANE = 'DELETE_LANE';
+	var ACTIVATE_LANE_EDIT = 'ACTIVATE_LANE_EDIT';
 	exports.ADD_LANE = ADD_LANE;
+	exports.UPDATE_LANE = UPDATE_LANE;
+	exports.DELETE_LANE = DELETE_LANE;
+	exports.ACTIVATE_LANE_EDIT = ACTIVATE_LANE_EDIT;
 
 /***/ },
 /* 229 */
@@ -25606,7 +25636,6 @@
 	    { className: 'lanes' },
 	    lanes.map(function (lane) {
 	      return _react2.default.createElement(_Lane2.default, {
-	        className: 'lane',
 	        key: lane.id,
 	        lane: lane
 	      });
@@ -25637,9 +25666,17 @@
 	
 	var _noteActionCreators2 = _interopRequireDefault(_noteActionCreators);
 	
+	var _laneActionCreators = __webpack_require__(/*! ../actions/laneActionCreators */ 227);
+	
+	var _laneActionCreators2 = _interopRequireDefault(_laneActionCreators);
+	
 	var _Notes = __webpack_require__(/*! ./Notes */ 218);
 	
 	var _Notes2 = _interopRequireDefault(_Notes);
+	
+	var _Editable = __webpack_require__(/*! ./Editable */ 225);
+	
+	var _Editable2 = _interopRequireDefault(_Editable);
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 179);
 	
@@ -25651,21 +25688,39 @@
 	      notes = _ref.notes;
 	  return _react2.default.createElement(
 	    'div',
-	    null,
+	    { className: 'lane' },
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'lane-header' },
+	      { className: 'lane-header', onClick: function onClick() {
+	          return dispatch(_laneActionCreators2.default.activateLaneEdit(lane.id));
+	        } },
 	      _react2.default.createElement(
 	        'button',
-	        { className: 'add-note', onClick: function onClick() {
-	            return dispatch(_noteActionCreators2.default.addNote(lane.id));
+	        { className: 'note-add', onClick: function onClick(e) {
+	            e.stopPropagation();
+	            dispatch(_noteActionCreators2.default.addNote(lane.id));
 	          } },
 	        '+'
 	      ),
+	      _react2.default.createElement(_Editable2.default, {
+	        className: 'lane-name',
+	        editing: lane.isEditing,
+	        value: lane.name,
+	        onEdit: function (id, name) {
+	          return dispatch(_laneActionCreators2.default.updateLane(id, name));
+	        }.bind(null, lane.id)
+	      }),
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'lane-name' },
-	        lane.name
+	        'button',
+	        { className: 'lane-delete', onClick: function onClick() {
+	            notes.forEach(function (note) {
+	              if (note.laneId == lane.id) {
+	                dispatch(_noteActionCreators2.default.deleteNote(note.id));
+	              }
+	            });
+	            dispatch(_laneActionCreators2.default.deleteLane(lane.id));
+	          } },
+	        'x'
 	      )
 	    ),
 	    _react2.default.createElement(_Notes2.default, { notes: notes.filter(function (note) {
@@ -25876,6 +25931,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _uuid = __webpack_require__(/*! uuid */ 219);
 	
 	var _uuid2 = _interopRequireDefault(_uuid);
@@ -25896,6 +25953,21 @@
 	        id: _uuid2.default.v4(),
 	        name: action.text
 	      }]);
+	
+	    case _laneActions.UPDATE_LANE:
+	      return state.map(function (lane) {
+	        return lane.id === action.id ? _extends({}, lane, { name: action.text, isEditing: false }) : lane;
+	      });
+	
+	    case _laneActions.DELETE_LANE:
+	      return state.filter(function (lane) {
+	        return lane.id !== action.id;
+	      });
+	
+	    case _laneActions.ACTIVATE_LANE_EDIT:
+	      return state.map(function (lane) {
+	        return lane.id === action.id ? _extends({}, lane, { isEditing: true }) : lane;
+	      });
 	
 	    default:
 	      return state;
