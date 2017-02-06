@@ -4,7 +4,59 @@ body {
   font-family: sans-serif;
 }
 
-.add-note, .add-lane{
+/*lane styling*/
+.lane {
+  display: inline-block;
+
+  margin: 1em;
+
+  background-color: #efefef;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+
+  min-width: 10em;
+  vertical-align: top;
+}
+
+/*lane header styling*/
+.lane-header {
+  overflow: auto;
+
+  padding: 1em;
+
+  color: #efefef;
+  background-color: #333;
+
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.note-add{
+  float: left;
+  margin-right: 0.5em;
+}
+
+.lane-name{
+  float: left;
+}
+
+.lane-delete {
+  float: right;
+  margin-left: 0.5em;
+  visibility: hidden;
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+.lane-header:hover .lane-delete {
+  visibility: visible;
+}
+
+.add-lane, .note-add{
+  cursor: pointer;
   background-color: #fdfdfd;
   border: 1px solid #ccc;
 }
@@ -41,6 +93,7 @@ body {
 .note .editable {
   float: left;
 }
+
 .note .delete {
   float: right;
 
@@ -53,6 +106,6 @@ body {
 
   visibility: hidden;
 }
-.note:hover .delete {
+.note:hover .delete{
   visibility: visible;
 }
