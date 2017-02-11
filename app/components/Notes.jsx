@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'uuid';
 import Note from './Note';
 import Editable from './Editable';
-import laneActionCreators from '../actions/laneActionCreators';
+import noteActionCreators from '../actions/noteActionCreators';
 import {connect} from 'react-redux';
 
 const Notes = ({notes, onNoteClick, onEdit, onDelete, dispatch}) => (
@@ -12,7 +12,7 @@ const Notes = ({notes, onNoteClick, onEdit, onDelete, dispatch}) => (
             className="note"
             id={id}
             onClick={onNoteClick.bind(null, id)}
-            onMove={(sourceId, targetId) => dispatch(laneActionCreators.moveNote(sourceId, targetId))}
+            onMove={(sourceId, targetId) => dispatch(noteActionCreators.moveNote(sourceId, targetId))}
             >
             <Editable
                 className="editable"

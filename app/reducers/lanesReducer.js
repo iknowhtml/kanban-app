@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import {ADD_LANE, UPDATE_LANE, DELETE_LANE, ACTIVATE_LANE_EDIT, MOVE_NOTE} from '../actions/laneActions'
+import {ADD_LANE, UPDATE_LANE, DELETE_LANE, ACTIVATE_LANE_EDIT} from '../actions/laneActions'
 
 function lanesReducer(state = [], action){
   switch(action.type){
@@ -28,10 +28,6 @@ function lanesReducer(state = [], action){
         Object.assign({}, lane, {isEditing: true})
         : lane
       );
-
-    case MOVE_NOTE:
-      console.log(`source: ${action.sourceId}, target: ${action.targetId}`);
-        return state;
 
     default:
       return state;

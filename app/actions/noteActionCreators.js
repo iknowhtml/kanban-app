@@ -30,10 +30,18 @@ function activateEditing(id) {
   }
 }
 
+function moveNote(sourceId, targetId){
+  return{
+    type: types.MOVE_NOTE,
+    sourceId,
+    targetId
+  }
+}
 
 export default {
   addNote,
   updateNote,
   deleteNote,
-  activateEditing
+  activateEditing,
+  moveNote
 };

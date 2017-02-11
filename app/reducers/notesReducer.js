@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, ACTIVATE_EDITING} from '../actions/noteActions';
+import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, ACTIVATE_EDITING, MOVE_NOTE} from '../actions/noteActions';
 
 function notesReducer(state = [], action){
   switch(action.type){
@@ -27,6 +27,10 @@ function notesReducer(state = [], action){
         note.id === action.id ?
         Object.assign({}, note, {isEditing: true})
         : note)
+
+    case MOVE_NOTE:
+      console.log(`source: ${action.sourceId}, target: ${action.targetId}`);
+        return state;
 
     default:
       return state;
