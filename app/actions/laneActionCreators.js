@@ -1,4 +1,4 @@
-import {ADD_LANE, UPDATE_LANE, DELETE_LANE, ACTIVATE_LANE_EDIT} from './laneActions';
+import {ADD_LANE, UPDATE_LANE, DELETE_LANE, ACTIVATE_LANE_EDIT, MOVE_NOTE} from './laneActions';
 
 function addLane(text = 'new lane'){
   return{
@@ -28,9 +28,19 @@ function activateLaneEdit(id){
     id
   }
 }
+
+function moveNote(sourceId, targetId){
+  return{
+    type: MOVE_NOTE,
+    sourceId,
+    targetId
+  }
+}
+
 export default {
   addLane,
   updateLane,
   deleteLane,
-  activateLaneEdit
+  activateLaneEdit,
+  moveNote
 };

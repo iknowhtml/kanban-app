@@ -1,12 +1,19 @@
 import React from 'react';
 import uuid from 'uuid';
-import Note from './Note'
-import Editable from './Editable'
+import Note from './Note';
+import Editable from './Editable';
+import laneActionCreators from '../actions/laneActionCreators';
+import {connect} from 'react-redux';
 
-const Notes = ({notes, onNoteClick, onEdit, onDelete}) => (
+const Notes = ({notes, onNoteClick, onEdit, onDelete, dispatch}) => (
   <ul className="notes">{notes.map( ({id, isEditing, task}) =>
         <li key={id}>
-          <Note className="note" onClick={onNoteClick.bind(null, id)}>
+          <Note
+            className="note"
+            id={id}
+            onClick={onNoteClick.bind(null, id)}
+            onMove={(sourceId, targetId) => dispatch(laneActionCreators.moveNote(sourceId, targetId))}
+            >
             <Editable
                 className="editable"
                 editing = {isEditing}
@@ -20,4 +27,4 @@ const Notes = ({notes, onNoteClick, onEdit, onDelete}) => (
   )}</ul>
 );
 
-export default Notes;
+export default connect()(Notes);
