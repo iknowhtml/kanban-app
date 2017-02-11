@@ -1,9 +1,12 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import Notes from './Notes';
 import uuid from 'uuid';
 import {connect} from 'react-redux';
 import laneActionCreators from '../actions/laneActionCreators';
 import Lanes from './Lanes';
+import {compose} from 'redux';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 class App extends React.Component{
   render(){
@@ -23,4 +26,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default compose(DragDropContext(HTML5Backend), connect(mapStateToProps))(App);
