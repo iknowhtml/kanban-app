@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE, ACTIVATE_EDITING, MOVE_NOTE} from '../actions/noteActions';
+import update from 'immutability-helper';
 
 function notesReducer(state = [], action){
   switch(action.type){
@@ -26,11 +27,21 @@ function notesReducer(state = [], action){
       return state.map(note =>
         note.id === action.id ?
         Object.assign({}, note, {isEditing: true})
-        : note)
+        : note);
 
-    case MOVE_NOTE:
-      console.log(`source: ${action.sourceId}, target: ${action.targetId}`);
-        return state;
+    case MOVE_NOTE: {
+      const currentIndex = state.findIndex((note) => note.id === action.sourceId);
+      const note = update(state[currentIndex], {laneId:{$set: action.targetLaneId}});
+      const newIndex = action.targetId ?
+        state.findIndex((note) => note.id === action.targetId) :
+        0;
+      return update(state,{
+        $splice: [
+          [currentIndex, 1],
+          [newIndex, 0, note]
+        ]
+      });
+    }
 
     default:
       return state;

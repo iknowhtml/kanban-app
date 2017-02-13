@@ -30,11 +30,12 @@ function activateEditing(id) {
   }
 }
 
-function moveNote(sourceId, targetId){
+function moveNote(sourceId, targetLaneId, targetId) {
   return{
     type: types.MOVE_NOTE,
     sourceId,
-    targetId
+    targetId,
+    targetLaneId
   }
 }
 

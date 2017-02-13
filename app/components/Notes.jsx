@@ -5,14 +5,15 @@ import Editable from './Editable';
 import noteActionCreators from '../actions/noteActionCreators';
 import {connect} from 'react-redux';
 
-const Notes = ({notes, onNoteClick, onEdit, onDelete, dispatch}) => (
-  <ul className="notes">{notes.map( ({id, isEditing, task}) =>
+const Notes = ({notes, onNoteClick, onEdit, onDelete, onMove, dispatch}) =>
+  (<ul className="notes">{notes.map(({id, laneId, isEditing, task}) =>
         <li key={id}>
           <Note
             className="note"
             id={id}
+            laneId={laneId}
             onClick={onNoteClick.bind(null, id)}
-            onMove={(sourceId, targetId) => dispatch(noteActionCreators.moveNote(sourceId, targetId))}
+            onMove={onMove}
             >
             <Editable
                 className="editable"

@@ -3,7 +3,7 @@ import {compose} from 'redux';
 import {DragSource, DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
 
-const Note = ({connectDragSource, connectDropTarget, onMove, id, children, ...props}) =>
+const Note = ({connectDragSource, connectDropTarget, onMove, id, laneId, children, ...props}) =>
 compose(connectDragSource, connectDropTarget)(
     <div {...props}>
       {children}
@@ -23,9 +23,9 @@ const noteTarget = {
     const targetId = targetProps.id;
     const sourceProps = monitor.getItem();
     const sourceId = sourceProps.id;
-
+    const targetLaneId = targetProps.laneId;
     if(sourceId !== targetId){
-      targetProps.onMove(sourceId, targetId);
+      targetProps.onMove(sourceId, targetLaneId, targetId);
     }
   }
 };
