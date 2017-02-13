@@ -30,12 +30,14 @@ connectDropTarget(<div className='lane'>
           dispatch(laneActionCreators.deleteLane(lane.id));
         }}>x</button>
   </div>
+
     <Notes notes={notes.filter((note) => note.laneId === lane.id)}
       onNoteClick={(id) => dispatch(noteActionCreators.activateEditing(id))}
       onEdit={(id, task) => dispatch(noteActionCreators.updateNote(id, task))}
       onDelete={id => dispatch(noteActionCreators.deleteNote(id))}
       onMove = {onMove}
       />
+
   </div>);
 
   const noteTarget = {

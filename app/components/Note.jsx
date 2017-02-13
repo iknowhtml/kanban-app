@@ -3,12 +3,14 @@ import {compose} from 'redux';
 import {DragSource, DropTarget} from 'react-dnd';
 import ItemTypes from '../constants/itemTypes';
 
-const Note = ({connectDragSource, connectDropTarget, onMove, id, laneId, children, ...props}) =>
-compose(connectDragSource, connectDropTarget)(
-    <div {...props}>
-      {children}
-    </div>
-  );
+const Note = ({connectDragSource, connectDropTarget, onMove, id, laneId, editing, children, ...props}) => {
+  const dragSource = editing ? a => a : connectDragSource;
+  return compose(dragSource, connectDropTarget)(
+      <div {...props}>
+        {children}
+      </div>
+    );
+}
 
 const noteSource = {
   beginDrag(props){

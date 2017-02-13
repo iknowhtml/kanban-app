@@ -14,6 +14,7 @@ const Notes = ({notes, onNoteClick, onEdit, onDelete, onMove, dispatch}) =>
             laneId={laneId}
             onClick={onNoteClick.bind(null, id)}
             onMove={onMove}
+            editing = {isEditing}
             >
             <Editable
                 className="editable"
