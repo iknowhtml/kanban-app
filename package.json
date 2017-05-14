@@ -1,12 +1,10 @@
 {
-  "name": "react-boilerplate",
-  "private": true,
-  "version": "2.5.6",
-  "description": "Boilerplate for [SurviveJS - React](http://survivejs.com/react/introduction/)",
+  "name": "kanban-app",
+  "version": "1.0.0",
+  "description": "A simple Kanban app built with React.",
   "scripts": {
     "stats": "webpack --profile --json > stats.json",
     "start": "webpack-dev-server",
-    "deploy": "gh-pages -d build",
     "build": "webpack",
     "test": "karma start",
     "test:tdd": "npm run test -- --auto-watch --no-single-run",
