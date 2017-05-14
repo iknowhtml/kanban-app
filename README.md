@@ -1,5 +1,5 @@
 # Kanban Application
-A simple Kanban application built with React.
+A simple Kanban application built with React and Redux.
 
 ## To use
 Checkout this repo, install dependencies, then run the following commands in the terminal.
